@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:whatsupp_ui/communities_Tab.dart';
 import 'package:whatsupp_ui/status_Tab.dart';
+import 'package:whatsupp_ui/verification_text_field.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -28,13 +29,14 @@ class _HomeState extends State<Home> {
               width: 10,
             ),
             PopupMenuButton(
-                // color: Colors.grey.shade400,
-                itemBuilder: ((context) => [
-                      const PopupMenuItem(value: 1, child: Text('New Group')),
-                      const PopupMenuItem(
-                          value: 2, child: Text('New broadcast')),
-                      const PopupMenuItem(value: 3, child: Text('LogOut'))
-                    ]))
+              // color: Colors.grey.shade400,
+              itemBuilder: ((context) => const [
+                    PopupMenuItem(value: 1, child: Text('New Group')),
+                    PopupMenuItem(value: 2, child: Text('New broadcast')),
+                    PopupMenuItem(value: 3, child: Text('LogOut')),
+                    PopupMenuItem(value: 4, child: Text('Verification'))
+                  ]),
+            )
           ],
           title: const Text('WhatsApp'),
           bottom: const TabBar(
@@ -65,14 +67,25 @@ class _HomeState extends State<Home> {
           ListView.builder(
               itemCount: 100,
               itemBuilder: ((context, index) {
-                return const ListTile(
-                  leading: CircleAvatar(
+                return ListTile(
+                  leading: const CircleAvatar(
                     backgroundImage: NetworkImage(
                         'https://images.pexels.com/photos/8159657/pexels-photo-8159657.jpeg?auto=compress&cs=tinysrgb&w=400'),
                   ),
-                  title: Text('Fareed'),
-                  subtitle: Text('last message'),
-                  trailing: Text('11 :51 PM'),
+                  title: const Text('Fareed'),
+                  subtitle: const Text('last message'),
+                  trailing: Column(
+                    children: const [
+                      Text('11 :51 PM', style: TextStyle(fontSize: 12.0)),
+                      CircleAvatar(
+                        radius: 12.0,
+                        child: Text(
+                          '2',
+                          style: TextStyle(fontSize: 12.0),
+                        ),
+                      )
+                    ],
+                  ),
                 );
               })),
           // Status Tab
